@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+        
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+   
+    <header>
+        
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="text-center">What's the weather like?</h3>
+                            </div>
+                        </div>
+                    </div>
+      
+       
+    </header>
+    <section style="margin-top: 40px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                        <form action="" method="POST">
+                                {% csrf_token %}
+                    <div class="input-group ">
+                            
+                        {{form.city}}
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">
+                                Add city
+                            </button>
+                        </span>
+                    
+
+                    </div>
+                </form>
+                
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col-md-4 col-md-offset-4">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}">
+                            {{message}}
+        
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+                {% for city_weather in weather_data %}
+            <div class="row">
+                
+                <div class="col-md-4 col-md-offset-4 ">
+                        <div class="well">
+                            
+                                
+                                       <div class="media">
+                                           <div class="media-left">
+                                               
+                                                    <!-- <img src="{% static 'images/weather.png' %}" alt="" height="30px" class="media-object"> -->
+                                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+
+
+                                           </div>
+                                          
+                                           <div class="media-body" style="padding:5px">
+                                                <h2 class="media-heading">{{city_weather.city}}</h2>
+                                                <h6 class="media-heading">{{city_weather.temperature}} °F</h6>
+                                                    <h6 class="media-heading">{{city_weather.description}}</h6>
+                                                   
+                                     
+                                               </div>
+                                               <div class="media-right">
+                                                   <a href="{% url 'delete_city' city_weather.city %}">
+                                                       <span class="glyphicon glyphicon-remove" style="color: #bdc3c7"></span>
+                                                   </a>
+                                               </div>
+
+                                       </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+        
+            
+
+        </div>
+    </section>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script>
+	</script>    
+</body>
+</html>

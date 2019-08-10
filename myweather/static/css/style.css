@@ -1,0 +1,25 @@
+
+header h3
+{
+    color: aliceblue;
+}
+header
+{
+    background-color: #00b894;
+    height: 70px;
+    
+}
+.well {
+   
+    
+    border: 1px solid #dfe6e9;
+    border-radius: 0px;
+    background-color: white;
+    border-radius: 3px;
+}
+section
+{
+    margin-bottom: 40px;
+}
+
+   
